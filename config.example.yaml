@@ -1,0 +1,24 @@
+---
+api:
+  port: 3000
+  base_url: http://localhost:3000
+
+chrome:
+  executable: /home/user/Downloads/ungoogled-chromium_122.0.6261.94-1_linux/chrome
+
+slack:
+  org: hackclub
+  email: bot@gmail.com
+  password: insertpasswordhere
+  channel_url: https://app.slack.com/client/TXXXXXXXXXX/CXXXXXXXXXX
+  bot_token: xoxb-XXXXXXX
+  signing_secret: XXXXXXXXXXXXXXXXXXXXX
+  app_token: xapp-1-XXXXXXXXXXXXXXXXXXXXXXX
+
+icecast:
+  url: http://localhost:8000/stream
+  host: localhost
+  port: 8000
+  user: source
+  password: insertpasswordhere
+  mount: stream
