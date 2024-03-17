@@ -27,9 +27,9 @@ cp config.yaml.example config.yaml
 # Edit the config
 nano config.yaml
 
-# Start the streaming server (won't work in bun)
+# Start the streaming service (won't work in bun)
 node stream
 
-# Start the bot (won't work in bun)
-node bot
+# Start the slack bot (won't work in bun)
+node index
 ```
