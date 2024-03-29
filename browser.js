@@ -35,26 +35,16 @@
   console.log("[browser] [Info] Joining huddle.")
   await page2.click(`button[data-qa="huddle_from_link_speed_bump_modal_go"]`)
 
-  async function mpvSpawn() {
-    const mpv = spawn('mpv', [config.icecast.url], {
+  
+  try {
+    spawn('bun', ['pipewire.js'], {
       detached: true
-    })
-    try {
-      spawn('bun', ['pipewire.js'], {
-        detached: true
-      });
-    } catch (e) {
-      console.error("[browser] [Warn] Linking to pipewire has not worked. This usually happens because it has already been linked.")
-      console.error(e)
-    }
-    await fetch(`${config.api.base_url}/start?`)
-
-    mpv.on('exit', async (code) => {
-      await mpvSpawn()
     });
+  } catch (e) {
+    console.error("[browser] [Warn] Linking to pipewire has not worked. This usually happens because it has already been linked.")
+    console.error(e)
   }
-
-  await mpvSpawn()
+  await fetch(`${config.api.base_url}/start?`)
 
 })();
 

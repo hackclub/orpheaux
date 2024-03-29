@@ -31,7 +31,16 @@ async function main() {
     shout.setAudioInfo('channels', '2');
 
     shout.open();
+    function mpvSpawn() {
+        const mpv = spawn('mpv', [config.icecast.url, "--input-ipc-server=.config/mpvc/mpvsocket0"], {
+            detached: true
+        })
 
+        mpv.on('exit', async (code) => {
+            await mpvSpawn()
+        });
+    }
+    mpvSpawn()
     async function play(metadata) {
         console.log(metadata)
         const fileHandle = await fsp.open(metadata.file);
@@ -49,7 +58,7 @@ async function main() {
             const { bytesRead } = await fileHandle.read(buf, 0, readLength, totalBytesRead);
 
             totalBytesRead = totalBytesRead + bytesRead;
-            if (bytesRead === 0) break;
+            if (bytesRead === 0 || !global.isPlaying) break;
             shout.send(buf, bytesRead);
             shout.sync();
         }

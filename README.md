@@ -11,6 +11,7 @@ Orpheaux is very much in alpha. It also has only been tested on Fedora 39 Deskto
 - bun
 - node.js
 - mpv
+- mpvc
 - an icecast2 server
 
 ## Get started
@@ -33,3 +34,9 @@ node stream
 # Start the slack bot (won't work in bun)
 node index
 ```
+
+## Structure
+- `stream.js` - Streams music to the icecast server.
+- `index.js` - Slack bot which controls the icecast server.
+- `browser.js` - Connect to slack and plays music.
+- `pipewire.js` - Called by `browser.js` to link `mpv` and Slack together.
